@@ -8,15 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		75BE941D9004A1DA49ADC2F4 /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FC486303B5AE2551923B9C /* Pods_TaxiApp.framework */; };
+		D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8362DC62408486C00187B8E /* MenuTableViewController.swift */; };
+		D8362DC92408487800187B8E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8362DC82408487800187B8E /* Menu.storyboard */; };
 		D8D9452D2405B61600335CDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9452C2405B61600335CDD /* AppDelegate.swift */; };
 		D8D945312405B61600335CDD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D945302405B61600335CDD /* MapViewController.swift */; };
 		D8D945342405B61600335CDD /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D945322405B61600335CDD /* Map.storyboard */; };
 		D8D945362405B61700335CDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D945352405B61700335CDD /* Assets.xcassets */; };
 		D8D945392405B61700335CDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D945372405B61700335CDD /* LaunchScreen.storyboard */; };
+		D8DDB452240ACD9700349C6E /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDB451240ACD9700349C6E /* Storyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		136F24E4F484B1F5A3699B78 /* Pods-TaxiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.debug.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D8362DC62408486C00187B8E /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		D8362DC82408487800187B8E /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		D8D945292405B61600335CDD /* TaxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D9452C2405B61600335CDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8D945302405B61600335CDD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		D8D945352405B61700335CDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8D945382405B61700335CDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8D9453A2405B61700335CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8DDB451240ACD9700349C6E /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		F21AE141CCFE61A2EB3D5AEF /* Pods-TaxiApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.release.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.release.xcconfig"; sourceTree = "<group>"; };
 		F2FC486303B5AE2551923B9C /* Pods_TaxiApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaxiApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -77,6 +83,7 @@
 		D8362DBE2408422000187B8E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D8362DC52408483200187B8E /* Menu */,
 				D8362DBC2408420400187B8E /* Map */,
 			);
 			path = ViewControllers;
@@ -106,6 +113,7 @@
 		D8362DC2240842B200187B8E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				D8DDB451240ACD9700349C6E /* Storyboard.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -124,6 +132,15 @@
 				D8D9452C2405B61600335CDD /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		D8362DC52408483200187B8E /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D8362DC62408486C00187B8E /* MenuTableViewController.swift */,
+				D8362DC82408487800187B8E /* Menu.storyboard */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		D8D945202405B61600335CDD = {
@@ -172,6 +189,7 @@
 				D8D945262405B61600335CDD /* Frameworks */,
 				D8D945272405B61600335CDD /* Resources */,
 				D7E153F3BB727A95CC5B3F99 /* [CP] Copy Pods Resources */,
+				F36F18B51BE22A99FE6FCF22 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,6 +241,7 @@
 				D8D945392405B61700335CDD /* LaunchScreen.storyboard in Resources */,
 				D8D945362405B61700335CDD /* Assets.xcassets in Resources */,
 				D8D945342405B61600335CDD /* Map.storyboard in Resources */,
+				D8362DC92408487800187B8E /* Menu.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +287,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F36F18B51BE22A99FE6FCF22 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -276,6 +312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D945312405B61600335CDD /* MapViewController.swift in Sources */,
+				D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */,
+				D8DDB452240ACD9700349C6E /* Storyboard.swift in Sources */,
 				D8D9452D2405B61600335CDD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
