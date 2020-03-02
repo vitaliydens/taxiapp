@@ -12,6 +12,7 @@
 		4805341A240D23E900338734 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48053419240D23E900338734 /* Login.storyboard */; };
 		4805341F240D26B300338734 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4805341E240D26B300338734 /* Registration.storyboard */; };
 		48053421240D26C600338734 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48053420240D26C600338734 /* RegistrationViewController.swift */; };
+		48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48053422240D772200338734 /* FirebaseAuthManager.swift */; };
 		75BE941D9004A1DA49ADC2F4 /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FC486303B5AE2551923B9C /* Pods_TaxiApp.framework */; };
 		D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8362DC62408486C00187B8E /* MenuTableViewController.swift */; };
 		D8362DC92408487800187B8E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8362DC82408487800187B8E /* Menu.storyboard */; };
@@ -30,6 +31,7 @@
 		48053419240D23E900338734 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4805341E240D26B300338734 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		48053420240D26C600338734 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		48053422240D772200338734 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAuthManager.swift; path = TaxiApp/UI/ViewControllers/Registration/FirebaseAuthManager.swift; sourceTree = SOURCE_ROOT; };
 		D8362DC62408486C00187B8E /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		D8362DC82408487800187B8E /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		D8D945292405B61600335CDD /* TaxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 		D8362DBF2408428E00187B8E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				48053422240D772200338734 /* FirebaseAuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48053421240D26C600338734 /* RegistrationViewController.swift in Sources */,
+				48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */,
 				D8D945312405B61600335CDD /* MapViewController.swift in Sources */,
 				D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */,
 				D8DDB452240ACD9700349C6E /* Storyboard.swift in Sources */,

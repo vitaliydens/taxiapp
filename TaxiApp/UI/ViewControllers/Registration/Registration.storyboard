@@ -8,17 +8,100 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Registration View Controller-->
+        <!--Registration-->
         <scene sceneID="ecj-Vd-aOV">
             <objects>
                 <viewController storyboardIdentifier="RegistrationViewController" id="XM8-BV-sdt" customClass="RegistrationViewController" customModule="TaxiApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Tx-cM-mVM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="C1H-L2-e3d">
+                                <rect key="frame" x="20" y="250.5" width="374" height="449.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jFq-KQ-hRZ">
+                                        <rect key="frame" x="20" y="0.0" width="334" height="155.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cab" translatesAutoresizingMaskIntoConstraints="NO" id="pOC-Pv-cvS">
+                                                <rect key="frame" x="100.5" y="0.0" width="133.5" height="135"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All fields is required" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEA-gs-hNe">
+                                                <rect key="frame" x="92.5" y="135" width="149.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4vY-i8-Ppj">
+                                        <rect key="frame" x="68.5" y="221.5" width="237" height="122"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email or Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mlw-FA-eGD">
+                                                <rect key="frame" x="20" y="0.0" width="197" height="34"/>
+                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KYR-Cp-hh6">
+                                                <rect key="frame" x="20" y="44" width="197" height="34"/>
+                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eL5-FC-w7E">
+                                                <rect key="frame" x="20" y="88" width="197" height="34"/>
+                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="KYR-Cp-hh6" secondAttribute="trailing" constant="20" id="5T1-fk-hSL"/>
+                                            <constraint firstAttribute="trailing" secondItem="eL5-FC-w7E" secondAttribute="trailing" constant="20" id="Cwz-r5-HVY"/>
+                                            <constraint firstItem="Mlw-FA-eGD" firstAttribute="leading" secondItem="4vY-i8-Ppj" secondAttribute="leading" constant="20" id="JzI-uR-eyN"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mlw-FA-eGD" secondAttribute="trailing" constant="20" id="cdu-n9-qZt"/>
+                                            <constraint firstItem="KYR-Cp-hh6" firstAttribute="leading" secondItem="4vY-i8-Ppj" secondAttribute="leading" constant="20" id="eEs-PB-37H"/>
+                                            <constraint firstItem="eL5-FC-w7E" firstAttribute="leading" secondItem="4vY-i8-Ppj" secondAttribute="leading" constant="20" id="pn1-Y7-rAB"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f99-Ga-hJt">
+                                        <rect key="frame" x="135.5" y="409.5" width="103" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le3-QW-xIT">
+                                                <rect key="frame" x="0.0" y="0.0" width="103" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="s3o-sw-jND"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="20"/>
+                                                <state key="normal" title="Registration">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="registrationButtonTapped:" destination="XM8-BV-sdt" eventType="touchUpInside" id="EbR-fk-20R"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jFq-KQ-hRZ" firstAttribute="leading" secondItem="C1H-L2-e3d" secondAttribute="leading" constant="20" id="ufL-Qo-UWy"/>
+                                    <constraint firstAttribute="trailing" secondItem="jFq-KQ-hRZ" secondAttribute="trailing" constant="20" id="vUK-Qm-FZL"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98853248360000001" green="0.83961564300000002" blue="0.0064248670819999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="O3o-zH-Yzv" firstAttribute="trailing" secondItem="C1H-L2-e3d" secondAttribute="trailing" constant="20" id="Baw-no-soT"/>
+                            <constraint firstItem="C1H-L2-e3d" firstAttribute="centerY" secondItem="O3o-zH-Yzv" secondAttribute="centerY" id="VYe-2l-aD4"/>
+                            <constraint firstItem="C1H-L2-e3d" firstAttribute="leading" secondItem="O3o-zH-Yzv" secondAttribute="leading" constant="20" id="aAS-WV-9PS"/>
+                            <constraint firstItem="C1H-L2-e3d" firstAttribute="centerX" secondItem="O3o-zH-Yzv" secondAttribute="centerX" id="eem-Ww-82S"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="O3o-zH-Yzv"/>
                     </view>
-                    <navigationItem key="navigationItem" id="j8r-pF-J3C"/>
+                    <navigationItem key="navigationItem" title="Registration" id="j8r-pF-J3C"/>
+                    <connections>
+                        <outlet property="confirmPassTextField" destination="eL5-FC-w7E" id="g7d-SJ-zvC"/>
+                        <outlet property="emailOrPhoneTextField" destination="Mlw-FA-eGD" id="98a-69-y3S"/>
+                        <outlet property="passTextField" destination="KYR-Cp-hh6" id="hrK-W7-ISU"/>
+                        <outlet property="warningLabel" destination="SEA-gs-hNe" id="y5r-f5-8Cz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="90N-aQ-UhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -43,4 +126,7 @@
             <point key="canvasLocation" x="-139.13043478260872" y="123.88392857142857"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-cab" width="133.5" height="135"/>
+    </resources>
 </document>

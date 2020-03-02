@@ -13,6 +13,7 @@ enum Storyboard: String {
     case map = "Map"
     case menu = "Menu"
     case registration = "Registration"
+    case login = "Login"
 
     var instance: UIStoryboard {
         return UIStoryboard(name: rawValue, bundle: nil)

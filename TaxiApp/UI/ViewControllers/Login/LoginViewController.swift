@@ -25,6 +25,19 @@ class LoginViewController: UIViewController {
     }
 
     // MARK: Functions
+
+    // hide navigation bar for login view
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    // hide keyboard
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -39,7 +52,8 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(registrationVC, animated: true)
     }
 
-    private func displayWarningLable(withText text: String) {
+    // animation for error message
+    private func displayWarningLabel(withText text: String) {
         warningLabel.text = text
         UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,
                        options: .curveEaseOut, animations: { [weak self] in self?.warningLabel.alpha = 1
@@ -51,25 +65,20 @@ class LoginViewController: UIViewController {
     // MARK: IBActions
     @IBAction func loginTapped(_ sender: UIButton) {
         guard let email = emailOrPhoneTextField.text, let password = passwordTextField.text, email != "", password != "" else {
-            displayWarningLable(withText: "Credentials is incorrect")
+            displayWarningLabel(withText: "Credentials is incorrect")
             return
         }
-
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
-            if error != nil {
-                self?.displayWarningLable(withText: "Error occurred")
-                return
+        let loginManager = FirebaseAuthManager()
+        loginManager.signIn(email: email, pass: password) { [weak self] (success) in
+        if (success) {
+            self?.navigateToMapStoryboard()
+        } else {
+            self?.displayWarningLabel(withText: "User not found.")
             }
-            if user != nil {
-                self?.navigateToMapStoryboard()
-                return
-            }
-            self?.displayWarningLable(withText: "No such user")
         }
     }
     
     @IBAction func registerTapped(_ sender: UIButton) {
         self.navigateToRegistrationStoryboard()
     }
-
 }
