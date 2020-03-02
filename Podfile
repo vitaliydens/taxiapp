@@ -5,4 +5,10 @@ target 'TaxiApp' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'SideMenu'
+
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Core' 
+  pod 'Firebase/Auth' 
+  pod 'Firebase/Database' 
+
 end

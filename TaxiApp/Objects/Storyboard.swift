@@ -9,9 +9,10 @@
 import UIKit
 
 enum Storyboard: String {
-    
+
     case map = "Map"
     case menu = "Menu"
+    case registration = "Registration"
 
     var instance: UIStoryboard {
         return UIStoryboard(name: rawValue, bundle: nil)
