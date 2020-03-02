@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48053415240D016D00338734 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48053414240D016D00338734 /* GoogleService-Info.plist */; };
 		75BE941D9004A1DA49ADC2F4 /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FC486303B5AE2551923B9C /* Pods_TaxiApp.framework */; };
 		D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8362DC62408486C00187B8E /* MenuTableViewController.swift */; };
 		D8362DC92408487800187B8E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8362DC82408487800187B8E /* Menu.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		136F24E4F484B1F5A3699B78 /* Pods-TaxiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.debug.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.debug.xcconfig"; sourceTree = "<group>"; };
+		48053414240D016D00338734 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8362DC62408486C00187B8E /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		D8362DC82408487800187B8E /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		D8D945292405B61600335CDD /* TaxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 				D8362DC3240842BF00187B8E /* Resources */,
 				D8D945372405B61700335CDD /* LaunchScreen.storyboard */,
 				D8D9453A2405B61700335CDD /* Info.plist */,
+				48053414240D016D00338734 /* GoogleService-Info.plist */,
 			);
 			path = TaxiApp;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			files = (
 				D8D945392405B61700335CDD /* LaunchScreen.storyboard in Resources */,
 				D8D945362405B61700335CDD /* Assets.xcassets in Resources */,
+				48053415240D016D00338734 /* GoogleService-Info.plist in Resources */,
 				D8D945342405B61600335CDD /* Map.storyboard in Resources */,
 				D8362DC92408487800187B8E /* Menu.storyboard in Resources */,
 			);
