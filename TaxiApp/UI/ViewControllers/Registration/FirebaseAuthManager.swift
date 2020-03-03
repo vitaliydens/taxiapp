@@ -31,4 +31,13 @@ class FirebaseAuthManager {
             }
         }
     }
+
+    // TODO: Create UI for signOut function
+//    func signOut() {
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
 }

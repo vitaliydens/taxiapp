@@ -22,6 +22,13 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         warningLabel.alpha = 0
+
+        // check auth status
+        Auth.auth().addStateDidChangeListener({ [weak self] (auth, user) in
+            if user != nil {
+                self?.navigateToMapStoryboard()
+            }
+        })
     }
 
     // MARK: Functions
