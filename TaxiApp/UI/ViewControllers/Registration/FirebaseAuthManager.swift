@@ -33,11 +33,21 @@ class FirebaseAuthManager {
     }
 
     // TODO: Create UI for signOut function
-//    func signOut() {
-//        do {
-//            try Auth.auth().signOut()
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func resetPassword(email: String, completionBlock: @escaping (_ success: Bool) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if error != nil {
+                completionBlock(true)
+            } else {
+                completionBlock(false)
+            }
+        }
+    }
 }

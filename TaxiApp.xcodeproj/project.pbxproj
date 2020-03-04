@@ -13,6 +13,8 @@
 		4805341F240D26B300338734 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4805341E240D26B300338734 /* Registration.storyboard */; };
 		48053421240D26C600338734 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48053420240D26C600338734 /* RegistrationViewController.swift */; };
 		48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48053422240D772200338734 /* FirebaseAuthManager.swift */; };
+		484C447E240E96BC0041BDF3 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */; };
+		484C4480240E96D80041BDF3 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */; };
 		75BE941D9004A1DA49ADC2F4 /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FC486303B5AE2551923B9C /* Pods_TaxiApp.framework */; };
 		D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8362DC62408486C00187B8E /* MenuTableViewController.swift */; };
 		D8362DC92408487800187B8E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8362DC82408487800187B8E /* Menu.storyboard */; };
@@ -32,6 +34,8 @@
 		4805341E240D26B300338734 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		48053420240D26C600338734 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		48053422240D772200338734 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAuthManager.swift; path = TaxiApp/UI/ViewControllers/Registration/FirebaseAuthManager.swift; sourceTree = SOURCE_ROOT; };
+		484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
+		484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D8362DC62408486C00187B8E /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		D8362DC82408487800187B8E /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		D8D945292405B61600335CDD /* TaxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,15 @@
 			path = Registration;
 			sourceTree = "<group>";
 		};
+		484C447C240E96940041BDF3 /* Forgot Password */ = {
+			isa = PBXGroup;
+			children = (
+				484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */,
+				484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */,
+			);
+			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
 		9D4CE3DA3CC9046D93F4437D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +126,7 @@
 		D8362DBE2408422000187B8E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				484C447C240E96940041BDF3 /* Forgot Password */,
 				4805341D240D269D00338734 /* Registration */,
 				48053416240D23B700338734 /* Login */,
 				D8362DC52408483200187B8E /* Menu */,
@@ -276,6 +290,7 @@
 				D8D945362405B61700335CDD /* Assets.xcassets in Resources */,
 				4805341A240D23E900338734 /* Login.storyboard in Resources */,
 				4805341F240D26B300338734 /* Registration.storyboard in Resources */,
+				484C447E240E96BC0041BDF3 /* ForgotPassword.storyboard in Resources */,
 				48053415240D016D00338734 /* GoogleService-Info.plist in Resources */,
 				D8D945342405B61600335CDD /* Map.storyboard in Resources */,
 				D8362DC92408487800187B8E /* Menu.storyboard in Resources */,
@@ -348,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				484C4480240E96D80041BDF3 /* ForgotPasswordViewController.swift in Sources */,
 				48053421240D26C600338734 /* RegistrationViewController.swift in Sources */,
 				48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */,
 				D8D945312405B61600335CDD /* MapViewController.swift in Sources */,

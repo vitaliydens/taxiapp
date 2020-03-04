@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="biS-zx-Z2e">
-                                <rect key="frame" x="40" y="223" width="334" height="504"/>
+                                <rect key="frame" x="40" y="181" width="334" height="588"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rbi-Yp-FQy">
                                         <rect key="frame" x="89" y="0.0" width="156" height="241"/>
@@ -92,6 +92,21 @@
                                             <constraint firstItem="rg5-tf-7hi" firstAttribute="leading" secondItem="phu-MZ-we5" secondAttribute="leading" id="p41-Cf-tYf"/>
                                             <constraint firstItem="h3m-ni-t0g" firstAttribute="leading" secondItem="phu-MZ-we5" secondAttribute="leading" id="qwY-3x-B3f"/>
                                         </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ARh-03-iTp">
+                                        <rect key="frame" x="99" y="554" width="136" height="34"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgz-Lb-M5Q">
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Forgot Password">
+                                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="forgotPasswordTapped:" destination="Hmi-dR-bQR" eventType="touchUpInside" id="mop-vH-aFx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>

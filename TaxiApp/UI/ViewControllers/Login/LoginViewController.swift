@@ -22,13 +22,7 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         warningLabel.alpha = 0
-
-        // check auth status
-        Auth.auth().addStateDidChangeListener({ [weak self] (auth, user) in
-            if user != nil {
-                self?.navigateToMapStoryboard()
-            }
-        })
+        // TODO: Add addStateDidChangeListener
     }
 
     // MARK: Functions
@@ -37,6 +31,9 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+
+        emailOrPhoneTextField.text = ""
+        passwordTextField.text = ""
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,6 +46,11 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
+    private func navigateToLoginStoryboard() {
+        let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
+        self.navigationController?.pushViewController(loginVC, animated: true)
+    }
+
     private func navigateToMapStoryboard() {
         let mapVC = Storyboard.map.instanceOf(viewController: MapViewController.self, identifier: "MapViewController")!
         self.navigationController?.pushViewController(mapVC, animated: true)
@@ -56,7 +58,13 @@ class LoginViewController: UIViewController {
     
     private func navigateToRegistrationStoryboard() {
         let registrationVC = Storyboard.registration.instanceOf(viewController: RegistrationViewController.self, identifier: "RegistrationViewController")!
+        print(registrationVC)
         self.navigationController?.pushViewController(registrationVC, animated: true)
+    }
+
+    private func navigateToForgotPasswordStoryboard() {
+        let forgotPasswordVC = Storyboard.forgotPassword.instanceOf(viewController: ForgotPasswordViewController.self, identifier: "ForgotPasswordViewController")!
+        self.navigationController?.pushViewController(forgotPasswordVC, animated: true)
     }
 
     // animation for error message
@@ -86,6 +94,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func registerTapped(_ sender: UIButton) {
-        self.navigateToRegistrationStoryboard()
+        navigateToRegistrationStoryboard()
+    }
+    @IBAction func forgotPasswordTapped(_ sender: UIButton) {
+        navigateToForgotPasswordStoryboard()
     }
 }
