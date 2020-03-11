@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MenuTableViewController: UITableViewController {
     
@@ -24,6 +25,17 @@ class MenuTableViewController: UITableViewController {
         default:
             print(indexPath.row)
         }
+    }
+
+// MARK: - Function
+    private func navigateToLoginStoryboard() {
+           let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
+           self.navigationController?.pushViewController(loginVC, animated: true)
+       }
+// MARK: - IBAction
+    @IBAction func signOutButton(_ sender: UIButton) {
+        let authManager = FirebaseAuthManager()
+        authManager.signOut()
     }
 }
     

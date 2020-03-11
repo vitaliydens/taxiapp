@@ -15,7 +15,19 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSh-RM-uk2" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="414" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NSh-RM-uk2" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="D0d-ds-jal"/>
+                            <constraint firstItem="NSh-RM-uk2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NBS-fa-rJD"/>
+                            <constraint firstItem="NSh-RM-uk2" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="bO6-WO-l3z"/>
+                            <constraint firstItem="NSh-RM-uk2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zjn-2I-WRz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="KDE-5u-lNJ">
@@ -25,6 +37,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="NSh-RM-uk2" id="rfF-7r-BQL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

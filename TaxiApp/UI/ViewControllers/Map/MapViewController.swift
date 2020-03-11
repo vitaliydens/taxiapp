@@ -11,25 +11,19 @@ import GoogleMaps
 import SideMenu
 
 class MapViewController: UIViewController {
-    
-// MARK: - Lifecycle
-    override func loadView() {
-      let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-      let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-      view = mapView
-      let marker = GMSMarker()
-      marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-      marker.title = "Sydney"
-      marker.snippet = "Australia"
-      marker.map = mapView
-    }
+
+    @IBOutlet private weak var mapView: GMSMapView!
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMenu()
+
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
     }
 
-// MARK: - IBAction
+    // MARK: - IBAction
     @IBAction private func menuItemClicked(_ sender: UIBarButtonItem) {
         showMenu()
     }
@@ -59,3 +53,24 @@ class MapViewController: UIViewController {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+extension MapViewController: CLLocationManagerDelegate {
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    guard status == .authorizedWhenInUse else {
+      return
+    }
+    locationManager.startUpdatingLocation()
+
+    mapView.isMyLocationEnabled = true
+    mapView.settings.myLocationButton = true
+  }
+
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let location = locations.first else {
+      return
+    }
+
+    mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+    locationManager.stopUpdatingLocation()
+  }
+}
