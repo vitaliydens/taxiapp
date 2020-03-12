@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4167D5B243947219EC89E11F /* libPods-TaxiApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D5F6A118689AEC53C35B15 /* libPods-TaxiApp.a */; };
 		48053415240D016D00338734 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48053414240D016D00338734 /* GoogleService-Info.plist */; };
 		48053418240D23DA00338734 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48053417240D23DA00338734 /* LoginViewController.swift */; };
 		4805341A240D23E900338734 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48053419240D23E900338734 /* Login.storyboard */; };
@@ -17,6 +16,9 @@
 		484C447E240E96BC0041BDF3 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */; };
 		484C4480240E96D80041BDF3 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */; };
 		48AE39912417FC3B0043AA8C /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AE39902417FC3B0043AA8C /* AuthRouter.swift */; };
+		48C70D8F2419A29B00BBCDBB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C70D8E2419A29B00BBCDBB /* Profile.storyboard */; };
+		48C70D912419A2B600BBCDBB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C70D902419A2B600BBCDBB /* ProfileViewController.swift */; };
+		B6B857F3DDFE4EB59350F20D /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD33E72AAAB09D91AFBA493C /* Pods_TaxiApp.framework */; };
 		D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8362DC62408486C00187B8E /* MenuTableViewController.swift */; };
 		D8362DC92408487800187B8E /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8362DC82408487800187B8E /* Menu.storyboard */; };
 		D8D9452D2405B61600335CDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9452C2405B61600335CDD /* AppDelegate.swift */; };
@@ -38,7 +40,9 @@
 		484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
 		484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		48AE39902417FC3B0043AA8C /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
-		76D5F6A118689AEC53C35B15 /* libPods-TaxiApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TaxiApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48C70D8E2419A29B00BBCDBB /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		48C70D902419A2B600BBCDBB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AD33E72AAAB09D91AFBA493C /* Pods_TaxiApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaxiApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8362DC62408486C00187B8E /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		D8362DC82408487800187B8E /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		D8D945292405B61600335CDD /* TaxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4167D5B243947219EC89E11F /* libPods-TaxiApp.a in Frameworks */,
+				B6B857F3DDFE4EB59350F20D /* Pods_TaxiApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,10 +112,19 @@
 			path = Routers;
 			sourceTree = "<group>";
 		};
+		48C70D8D2419A26C00BBCDBB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				48C70D8E2419A29B00BBCDBB /* Profile.storyboard */,
+				48C70D902419A2B600BBCDBB /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		9D4CE3DA3CC9046D93F4437D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				76D5F6A118689AEC53C35B15 /* libPods-TaxiApp.a */,
+				AD33E72AAAB09D91AFBA493C /* Pods_TaxiApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +149,7 @@
 		D8362DBE2408422000187B8E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				48C70D8D2419A26C00BBCDBB /* Profile */,
 				48AE398F2417FC110043AA8C /* Routers */,
 				484C447C240E96940041BDF3 /* Forgot Password */,
 				4805341D240D269D00338734 /* Registration */,
@@ -248,6 +262,7 @@
 				D8D945262405B61600335CDD /* Frameworks */,
 				D8D945272405B61600335CDD /* Resources */,
 				D7E153F3BB727A95CC5B3F99 /* [CP] Copy Pods Resources */,
+				1BD16C0323CCD07A842ACC2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,6 +317,7 @@
 				4805341F240D26B300338734 /* Registration.storyboard in Resources */,
 				484C447E240E96BC0041BDF3 /* ForgotPassword.storyboard in Resources */,
 				48053415240D016D00338734 /* GoogleService-Info.plist in Resources */,
+				48C70D8F2419A29B00BBCDBB /* Profile.storyboard in Resources */,
 				D8D945342405B61600335CDD /* Map.storyboard in Resources */,
 				D8362DC92408487800187B8E /* Menu.storyboard in Resources */,
 			);
@@ -310,6 +326,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1BD16C0323CCD07A842ACC2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D7E153F3BB727A95CC5B3F99 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,6 +391,7 @@
 			files = (
 				484C4480240E96D80041BDF3 /* ForgotPasswordViewController.swift in Sources */,
 				48053421240D26C600338734 /* RegistrationViewController.swift in Sources */,
+				48C70D912419A2B600BBCDBB /* ProfileViewController.swift in Sources */,
 				48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */,
 				D8D945312405B61600335CDD /* MapViewController.swift in Sources */,
 				D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */,

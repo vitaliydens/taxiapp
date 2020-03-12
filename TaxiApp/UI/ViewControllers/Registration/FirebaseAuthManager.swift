@@ -20,6 +20,17 @@ class FirebaseAuthManager {
                 completionBlock(false)
             }
         }
+
+        let db = Firestore.firestore()
+             db.collection("users").addDocument(data: [
+                 "email": email,
+             ]) { err in
+                 if let err = err {
+                     print("Error adding document: \(err.localizedDescription)")
+                 } else {
+                     print("Document added")
+                 }
+             }
     }
 
     func signIn(email: String, pass: String, completionBlock: @escaping (_ success: Bool) -> Void) {
