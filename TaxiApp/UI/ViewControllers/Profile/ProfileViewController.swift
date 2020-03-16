@@ -20,6 +20,10 @@ class ProfileViewController: UITableViewController {
     @IBOutlet weak var userBirthDay: UITextField!
     @IBOutlet weak var userEmail: UITextField!
 
+    // MARK: Variables
+    private var usersCollection = Firestore.firestore().collection("users").path
+    private var userCollectionRef: CollectionReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,8 +33,28 @@ class ProfileViewController: UITableViewController {
         userSecondName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userPhoneNumber.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userBirthDay.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+
+        userCollectionRef = Firestore.firestore().collection(usersCollection)
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        userCollectionRef.getDocuments { (snapshot, error) in
+            if let err = error {
+                debugPrint("Error fetching docs: \(err)")
+            } else {
+                guard let snap = snapshot else { return }
+                for document in snap.documents {
+                    let data = document.data()
+                    self.userFirstName.text = data["firstName"] as? String ?? ""
+                    self.userSecondName.text = data["secondName"] as? String ?? ""
+                    self.userPhoneNumber.text = data["phoneNumber"] as? String ?? ""
+                    self.userBirthDay.text = data["dateOfBirth"] as? String ?? ""
+                    self.userEmail.text = data["email"] as? String ?? ""
+                }
+            }
+        }
+    }
+
     // MARK: Table view delegate
        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            if indexPath.row == 0 {
