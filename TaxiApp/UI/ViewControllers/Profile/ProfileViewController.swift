@@ -7,19 +7,28 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UITableViewController {
 
+    // MARK: Outlets
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userFirstName: UITextField!
     @IBOutlet weak var userSecondName: UITextField!
+    @IBOutlet weak var userPhoneNumber: UITextField!
     @IBOutlet weak var userBirthDay: UITextField!
     @IBOutlet weak var userEmail: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        saveButton.isEnabled = false
+
+        userFirstName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        userSecondName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        userPhoneNumber.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        userBirthDay.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
     // MARK: Table view delegate
@@ -55,12 +64,41 @@ class ProfileViewController: UITableViewController {
            }
        }
 
+    @objc private func textFieldChanged() {
+           if (userFirstName.text?.isEmpty == false
+            || userSecondName.text?.isEmpty == false
+            || userPhoneNumber.text?.isEmpty == false
+            || userBirthDay.text?.isEmpty == false
+            || userEmail.text?.isEmpty == false ) {
+               saveButton.isEnabled = true
+           } else {
+               saveButton.isEnabled = false
+           }
+       }
+
     func saveData() {
-        
+        let db = Firestore.firestore()
+        db.collection("users").addDocument(data: [
+            "firstName": userFirstName.text!,
+            "secondName": userSecondName.text!,
+            "phoneNumber": userPhoneNumber.text!,
+            "dateOfBirth": userBirthDay.text!,
+            "email": userEmail.text!
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err.localizedDescription)")
+            } else {
+                print("Document added")
+            }
+        }
+
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         saveData()
+        let alert = UIAlertController(title: "Info", message: "Your data was saved.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -81,7 +119,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         userImage.image = info[.editedImage] as? UIImage
         userImage.contentMode = .scaleAspectFill
         userImage.clipsToBounds = true
-       // imageIsChanged = true
         dismiss(animated: true)
     }
 }

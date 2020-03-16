@@ -219,6 +219,7 @@
                         <outlet property="userEmail" destination="F4n-28-KT7" id="aaW-dO-xe1"/>
                         <outlet property="userFirstName" destination="sA3-5u-sRB" id="A63-yr-3Dd"/>
                         <outlet property="userImage" destination="kdQ-Z4-ZBS" id="C2F-oj-uth"/>
+                        <outlet property="userPhoneNumber" destination="hhr-IK-PDQ" id="svP-so-ubg"/>
                         <outlet property="userSecondName" destination="jTl-JU-MdV" id="Bjb-jP-Bv3"/>
                     </connections>
                 </tableViewController>
