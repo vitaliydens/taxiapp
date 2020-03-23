@@ -46,8 +46,8 @@ class MenuTableViewController: UITableViewController {
             let currentUserEmail = Auth.auth().currentUser?.email
             let currentUser = users.filter{ $0.email == currentUserEmail }
             let user = currentUser[0]
-            self.lblUserName.text = user.firstName
-            self.lblUserPhone.text = user.phoneNumber
+            self.lblUserName.text = user.firstName ?? "Default"
+            self.lblUserPhone.text = user.phoneNumber ?? "Default"
         }
     }
     

@@ -22,6 +22,7 @@ class ProfileViewController: UITableViewController {
 
     // MARK: - Variables
     var users = [User]()
+    private var datePicker: UIDatePicker?
 
     // MARK: - Functions
     private func reference(to collectionReference: FirestoreCollectionReference) -> CollectionReference {
@@ -46,6 +47,45 @@ class ProfileViewController: UITableViewController {
         userFirstName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userSecondName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userPhoneNumber.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        userBirthDay.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        userEmail.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+
+        createDatePicker()
+        createToolbar()
+    }
+
+    func createDatePicker() {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        userBirthDay.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(ProfileViewController.dateChanged(datePicker:)), for: .valueChanged)
+        let calendar = Calendar(identifier: .gregorian)
+        let currentDate = Date()
+        var components = DateComponents()
+        components.calendar = calendar
+        components.year = -18
+        components.month = 12
+        let maxDate = calendar.date(byAdding: components, to: currentDate)!
+        datePicker.maximumDate = maxDate
+    }
+
+    @objc func dateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        userBirthDay.text = dateFormatter.string(from: datePicker.date)
+    }
+
+    func createToolbar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ProfileViewController.dismissKeyboard))
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        userBirthDay.inputAccessoryView = toolBar
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     // MARK: - Table view delegate
