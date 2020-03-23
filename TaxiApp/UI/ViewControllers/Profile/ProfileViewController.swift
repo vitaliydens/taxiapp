@@ -11,51 +11,44 @@ import Firebase
 
 class ProfileViewController: UITableViewController {
 
-    // MARK: Outlets
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userFirstName: UITextField!
-    @IBOutlet weak var userSecondName: UITextField!
-    @IBOutlet weak var userPhoneNumber: UITextField!
-    @IBOutlet weak var userBirthDay: UITextField!
-    @IBOutlet weak var userEmail: UITextField!
+    // MARK: - Outlets
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var userImage: UIImageView!
+    @IBOutlet private weak var userFirstName: UITextField!
+    @IBOutlet private weak var userSecondName: UITextField!
+    @IBOutlet private weak var userPhoneNumber: UITextField!
+    @IBOutlet private weak var userBirthDay: UITextField!
+    @IBOutlet private weak var userEmail: UITextField!
 
-    // MARK: Variables
-    private var usersCollection = Firestore.firestore().collection("users").path
-    private var userCollectionRef: CollectionReference!
+    // MARK: - Variables
+    var users = [User]()
+
+    // MARK: - Functions
+    private func reference(to collectionReference: FirestoreCollectionReference) -> CollectionReference {
+        return Firestore.firestore().collection(collectionReference.rawValue)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        FireStoreManager.shared.read(from: .users, returning: User.self) { (users) in
+            self.users = users
+            let currentUserEmail = Auth.auth().currentUser?.email
+            let currentUser = users.filter{ $0.email == currentUserEmail }
+            let user = currentUser[0]
+            self.userFirstName.text = user.firstName
+            self.userSecondName.text = user.secondName
+            self.userPhoneNumber.text = user.phoneNumber
+            self.userBirthDay.text = user.birthDay
+            self.userEmail.text = user.email
+        }
         saveButton.isEnabled = false
-
         userFirstName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userSecondName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userPhoneNumber.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        userBirthDay.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-
-        userCollectionRef = Firestore.firestore().collection(usersCollection)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        userCollectionRef.getDocuments { (snapshot, error) in
-            if let err = error {
-                debugPrint("Error fetching docs: \(err)")
-            } else {
-                guard let snap = snapshot else { return }
-                for document in snap.documents {
-                    let data = document.data()
-                    self.userFirstName.text = data["firstName"] as? String ?? ""
-                    self.userSecondName.text = data["secondName"] as? String ?? ""
-                    self.userPhoneNumber.text = data["phoneNumber"] as? String ?? ""
-                    self.userBirthDay.text = data["dateOfBirth"] as? String ?? ""
-                    self.userEmail.text = data["email"] as? String ?? ""
-                }
-            }
-        }
-    }
-
-    // MARK: Table view delegate
+    // MARK: - Table view delegate
        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            if indexPath.row == 0 {
 
@@ -100,33 +93,29 @@ class ProfileViewController: UITableViewController {
            }
        }
 
-    func saveData() {
-        let db = Firestore.firestore()
-        db.collection("users").addDocument(data: [
-            "firstName": userFirstName.text!,
-            "secondName": userSecondName.text!,
-            "phoneNumber": userPhoneNumber.text!,
-            "dateOfBirth": userBirthDay.text!,
-            "email": userEmail.text!
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err.localizedDescription)")
-            } else {
-                print("Document added")
-            }
-        }
-
+    func updateUser(user: User, completion: @escaping (User) -> Void) {
+        let currentUserEmail = Auth.auth().currentUser?.email
+        let currentUser = users.filter{ $0.email == currentUserEmail }
+        var updateUser = currentUser[0]
+        updateUser.firstName = userFirstName.text
+        updateUser.secondName = userSecondName.text
+        updateUser.phoneNumber = userPhoneNumber.text
+        updateUser.birthDay = userBirthDay.text
+        updateUser.email = userEmail.text!
+        completion(updateUser)
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        saveData()
+        updateUser(user: users[0]) { updateUser in
+            FireStoreManager.shared.update(for: updateUser, in: .users)
+        }
         let alert = UIAlertController(title: "Info", message: "Your data was saved.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
 
-// MARK: Work with image
+// MARK: - Work with image
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func chooseImagePicker(source: UIImagePickerController.SourceType) {

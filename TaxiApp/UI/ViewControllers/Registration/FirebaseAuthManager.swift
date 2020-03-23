@@ -8,29 +8,18 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 class FirebaseAuthManager {
 
     func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
-            if let user = authResult?.user {
-                print(user)
+        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+            if (authResult?.user) != nil {
                 completionBlock(true)
             } else {
                 completionBlock(false)
             }
         }
-
-        let db = Firestore.firestore()
-             db.collection("users").addDocument(data: [
-                 "email": email,
-             ]) { err in
-                 if let err = err {
-                     print("Error adding document: \(err.localizedDescription)")
-                 } else {
-                     print("Document added")
-                 }
-             }
     }
 
     func signIn(email: String, pass: String, completionBlock: @escaping (_ success: Bool) -> Void) {

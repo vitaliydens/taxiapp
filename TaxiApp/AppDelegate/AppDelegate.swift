@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyDM6Zh39pShzr7JlTmiQ9MUtXzR6Yn489s")
         //GMSPlacesClient.provideAPIKey("AIzaSyDM6Zh39pShzr7JlTmiQ9MUtXzR6Yn489s")
-        FirebaseApp.configure()
+        FireStoreManager.shared.configure()
 
         window = UIWindow.init()
         window?.rootViewController = router.navigationController

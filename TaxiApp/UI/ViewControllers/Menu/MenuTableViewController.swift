@@ -15,7 +15,10 @@ class MenuTableViewController: UITableViewController {
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var lblUserName: UILabel!
     @IBOutlet private weak var lblUserPhone: UILabel!
-    
+
+// MARK: - Variables
+    var users = [User]()
+
 // MARK: - Tableview delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
@@ -35,6 +38,18 @@ class MenuTableViewController: UITableViewController {
            let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
            self.navigationController?.pushViewController(loginVC, animated: true)
        }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FireStoreManager.shared.read(from: .users, returning: User.self) { (users) in
+            self.users = users
+            let currentUserEmail = Auth.auth().currentUser?.email
+            let currentUser = users.filter{ $0.email == currentUserEmail }
+            let user = currentUser[0]
+            self.lblUserName.text = user.firstName
+            self.lblUserPhone.text = user.phoneNumber
+        }
+    }
     
 // MARK: - IBAction
     @IBAction func signOutButton(_ sender: UIButton) {

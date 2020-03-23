@@ -15,6 +15,11 @@
 		48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48053422240D772200338734 /* FirebaseAuthManager.swift */; };
 		484C447E240E96BC0041BDF3 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */; };
 		484C4480240E96D80041BDF3 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */; };
+		4885B4322420BB17005A6F51 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885B4312420BB17005A6F51 /* UserModel.swift */; };
+		4885B4342420BC73005A6F51 /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885B4332420BC73005A6F51 /* FireStoreManager.swift */; };
+		4885B436242118A7005A6F51 /* FirestoreCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885B435242118A7005A6F51 /* FirestoreCollectionReference.swift */; };
+		4885B43824211D29005A6F51 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885B43724211D29005A6F51 /* EncodableExtension.swift */; };
+		4885B43A24213081005A6F51 /* SnapshotExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885B43924213081005A6F51 /* SnapshotExtension.swift */; };
 		48AE39912417FC3B0043AA8C /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AE39902417FC3B0043AA8C /* AuthRouter.swift */; };
 		48C70D8F2419A29B00BBCDBB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C70D8E2419A29B00BBCDBB /* Profile.storyboard */; };
 		48C70D912419A2B600BBCDBB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C70D902419A2B600BBCDBB /* ProfileViewController.swift */; };
@@ -39,6 +44,11 @@
 		48053422240D772200338734 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseAuthManager.swift; path = TaxiApp/UI/ViewControllers/Registration/FirebaseAuthManager.swift; sourceTree = SOURCE_ROOT; };
 		484C447D240E96BC0041BDF3 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
 		484C447F240E96D80041BDF3 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		4885B4312420BB17005A6F51 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		4885B4332420BC73005A6F51 /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FireStoreManager.swift; path = TaxiApp/Objects/FireStoreManager.swift; sourceTree = SOURCE_ROOT; };
+		4885B435242118A7005A6F51 /* FirestoreCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionReference.swift; sourceTree = "<group>"; };
+		4885B43724211D29005A6F51 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EncodableExtension.swift; path = TaxiApp/Objects/EncodableExtension.swift; sourceTree = SOURCE_ROOT; };
+		4885B43924213081005A6F51 /* SnapshotExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnapshotExtension.swift; path = TaxiApp/Objects/SnapshotExtension.swift; sourceTree = SOURCE_ROOT; };
 		48AE39902417FC3B0043AA8C /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		48C70D8E2419A29B00BBCDBB /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		48C70D902419A2B600BBCDBB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				48053422240D772200338734 /* FirebaseAuthManager.swift */,
+				4885B4332420BC73005A6F51 /* FireStoreManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -171,6 +182,8 @@
 		D8362DC02408429600187B8E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4885B43724211D29005A6F51 /* EncodableExtension.swift */,
+				4885B43924213081005A6F51 /* SnapshotExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				D8DDB451240ACD9700349C6E /* Storyboard.swift */,
+				4885B4312420BB17005A6F51 /* UserModel.swift */,
+				4885B435242118A7005A6F51 /* FirestoreCollectionReference.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -392,13 +407,18 @@
 				484C4480240E96D80041BDF3 /* ForgotPasswordViewController.swift in Sources */,
 				48053421240D26C600338734 /* RegistrationViewController.swift in Sources */,
 				48C70D912419A2B600BBCDBB /* ProfileViewController.swift in Sources */,
+				4885B43824211D29005A6F51 /* EncodableExtension.swift in Sources */,
+				4885B4342420BC73005A6F51 /* FireStoreManager.swift in Sources */,
 				48053423240D772200338734 /* FirebaseAuthManager.swift in Sources */,
 				D8D945312405B61600335CDD /* MapViewController.swift in Sources */,
 				D8362DC72408486C00187B8E /* MenuTableViewController.swift in Sources */,
+				4885B43A24213081005A6F51 /* SnapshotExtension.swift in Sources */,
 				D8DDB452240ACD9700349C6E /* Storyboard.swift in Sources */,
 				48053418240D23DA00338734 /* LoginViewController.swift in Sources */,
 				48AE39912417FC3B0043AA8C /* AuthRouter.swift in Sources */,
 				D8D9452D2405B61600335CDD /* AppDelegate.swift in Sources */,
+				4885B436242118A7005A6F51 /* FirestoreCollectionReference.swift in Sources */,
+				4885B4322420BB17005A6F51 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
