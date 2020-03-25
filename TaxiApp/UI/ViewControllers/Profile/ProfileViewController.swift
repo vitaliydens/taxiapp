@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class ProfileViewController: UITableViewController {
 
@@ -23,6 +24,10 @@ class ProfileViewController: UITableViewController {
     // MARK: - Variables
     var users = [User]()
     private var datePicker: UIDatePicker?
+    var imageRef: StorageReference {
+        return Storage.storage().reference().child("images")
+    }
+    //private var imageIsChanged: Bool = false
 
     // MARK: - Functions
     private func reference(to collectionReference: FirestoreCollectionReference) -> CollectionReference {
@@ -64,7 +69,6 @@ class ProfileViewController: UITableViewController {
         var components = DateComponents()
         components.calendar = calendar
         components.year = -18
-        components.month = 12
         let maxDate = calendar.date(byAdding: components, to: currentDate)!
         datePicker.maximumDate = maxDate
     }
@@ -145,6 +149,7 @@ class ProfileViewController: UITableViewController {
         completion(updateUser)
     }
     
+    // MARK: - IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         updateUser(user: users[0]) { updateUser in
             FireStoreManager.shared.update(for: updateUser, in: .users)
