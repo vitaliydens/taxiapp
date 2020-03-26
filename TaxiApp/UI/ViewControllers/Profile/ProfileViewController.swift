@@ -24,10 +24,10 @@ class ProfileViewController: UITableViewController {
     // MARK: - Variables
     var users = [User]()
     private var datePicker: UIDatePicker?
-    var imageRef: StorageReference {
+    var imageReference: StorageReference {
         return Storage.storage().reference().child("images")
     }
-    //private var imageIsChanged: Bool = false
+    private var imageIsChanged: Bool = false
 
     // MARK: - Functions
     private func reference(to collectionReference: FirestoreCollectionReference) -> CollectionReference {
@@ -48,6 +48,7 @@ class ProfileViewController: UITableViewController {
             self.userBirthDay.text = user.birthDay
             self.userEmail.text = user.email
         }
+        downloadImage()
         saveButton.isEnabled = false
         userFirstName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         userSecondName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
@@ -148,6 +149,31 @@ class ProfileViewController: UITableViewController {
         updateUser.email = userEmail.text!
         completion(updateUser)
     }
+
+    func uploadImage() {
+        guard let image = userImage.image else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+
+        let uid = Auth.auth().currentUser?.uid
+        let uploadImageRef = imageReference.child("\(String(describing: uid!)).jpg")
+
+        let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            print("Upload task complete!")
+        }
+        uploadTask.resume()
+    }
+
+    func downloadImage() {
+        let uid = Auth.auth().currentUser?.uid
+        let downloadImageRef = imageReference.child("\(String(describing: uid!)).jpg")
+        downloadImageRef.getData(maxSize: 1024*1024*12) { (dataResponse, errorResponse) in
+            if let data = dataResponse{
+                let image = UIImage(data: data)
+                self.userImage.image = image
+            }
+            print(errorResponse ?? "No error")
+        }
+    }
     
     // MARK: - IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -177,6 +203,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         userImage.image = info[.editedImage] as? UIImage
         userImage.contentMode = .scaleAspectFill
         userImage.clipsToBounds = true
+        uploadImage()
+        imageIsChanged = true
         dismiss(animated: true)
     }
 }
