@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 
 class MenuTableViewController: UITableViewController {
     
@@ -18,6 +19,9 @@ class MenuTableViewController: UITableViewController {
 
 // MARK: - Variables
     var users = [User]()
+    var imageReference: StorageReference {
+           return Storage.storage().reference().child("images")
+       }
 
 // MARK: - Tableview delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -34,10 +38,6 @@ class MenuTableViewController: UITableViewController {
     }
 
 // MARK: - Function
-    private func navigateToLoginStoryboard() {
-           let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
-           self.navigationController?.pushViewController(loginVC, animated: true)
-       }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +48,32 @@ class MenuTableViewController: UITableViewController {
             let user = currentUser[0]
             self.lblUserName.text = user.firstName ?? "Default"
             self.lblUserPhone.text = user.phoneNumber ?? "Default"
+           // self.userImageView.clipsToBounds = true
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        downloadImage()
+    }
+
+    func downloadImage() {
+        let uid = Auth.auth().currentUser?.uid
+        let downloadImageRef = imageReference.child("\(String(describing: uid!)).jpg")
+        downloadImageRef.getData(maxSize: 1024*1024*12) { (dataResponse, errorResponse) in
+            if let data = dataResponse{
+                let image = UIImage(data: data)
+                self.userImageView.image = image
+                self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
+                self.userImageView.clipsToBounds = true
+            }
+            print(errorResponse ?? "No error")
+        }
+    }
+
+    private func navigateToLoginStoryboard() {
+           let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
+           self.navigationController?.pushViewController(loginVC, animated: true)
+       }
     
 // MARK: - IBAction
     @IBAction func signOutButton(_ sender: UIButton) {
