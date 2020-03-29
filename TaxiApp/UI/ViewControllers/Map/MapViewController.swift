@@ -18,7 +18,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMenu()
-
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }

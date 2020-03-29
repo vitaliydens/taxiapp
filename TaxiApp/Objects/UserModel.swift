@@ -19,12 +19,14 @@ struct User: Codable, Identifiable {
     var phoneNumber: String?
     var birthDay: String?
     var email: String
+    var uid: String?
 
-    init(firstName: String, secondName: String, phoneNumber: String, birthDay: String, email: String) {
+    init(firstName: String, secondName: String, phoneNumber: String, birthDay: String, email: String, uid: String) {
         self.firstName = firstName
         self.secondName = secondName
         self.phoneNumber = phoneNumber
         self.birthDay = birthDay
         self.email = email
+        self.uid = uid
     }
 }

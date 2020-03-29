@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class ProfileViewController: UITableViewController {
+class ProfileViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Outlets
     @IBOutlet private weak var saveButton: UIBarButtonItem!
@@ -27,7 +27,7 @@ class ProfileViewController: UITableViewController {
     var imageReference: StorageReference {
         return Storage.storage().reference().child("images")
     }
-    private var imageIsChanged: Bool = false
+    private var currentUserPass: UITextField? = nil
 
     // MARK: - Functions
     private func reference(to collectionReference: FirestoreCollectionReference) -> CollectionReference {
@@ -36,11 +36,11 @@ class ProfileViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        userEmail.delegate = self
         FireStoreManager.shared.read(from: .users, returning: User.self) { (users) in
             self.users = users
-            let currentUserEmail = Auth.auth().currentUser?.email
-            let currentUser = users.filter{ $0.email == currentUserEmail }
+            let currentUserUid = Auth.auth().currentUser?.uid
+            let currentUser = users.filter{ $0.uid == currentUserUid }
             let user = currentUser[0]
             self.userFirstName.text = user.firstName
             self.userSecondName.text = user.secondName
@@ -94,60 +94,105 @@ class ProfileViewController: UITableViewController {
     }
 
     // MARK: - Table view delegate
-       override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           if indexPath.row == 0 {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
 
-               let cameraIcon = #imageLiteral(resourceName: "camera")
-               let photoIcon = #imageLiteral(resourceName: "photo-1")
+            let cameraIcon = #imageLiteral(resourceName: "camera")
+            let photoIcon = #imageLiteral(resourceName: "photo-1")
 
-               let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-               let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-                   self.chooseImagePicker(source: .camera)
-               }
-               camera.setValue(cameraIcon, forKey: "image")
-               camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+            let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+                self.chooseImagePicker(source: .camera)
+            }
+            camera.setValue(cameraIcon, forKey: "image")
+            camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
 
-               let photo = UIAlertAction(title: "Photo", style: .default) { _ in
-                   self.chooseImagePicker(source: .photoLibrary)
-               }
-               photo.setValue(photoIcon, forKey: "image")
-               photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+            let photo = UIAlertAction(title: "Photo", style: .default) { _ in
+                self.chooseImagePicker(source: .photoLibrary)
+            }
+            photo.setValue(photoIcon, forKey: "image")
+            photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
 
-               let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
 
-               actionSheet.addAction(camera)
-               actionSheet.addAction(photo)
-               actionSheet.addAction(cancel)
+            actionSheet.addAction(camera)
+            actionSheet.addAction(photo)
+            actionSheet.addAction(cancel)
 
-               present(actionSheet, animated: true)
-           } else {
-               view.endEditing(true)
-           }
-       }
+            present(actionSheet, animated: true)
+        } else {
+            view.endEditing(true)
+        }
+    }
 
     @objc private func textFieldChanged() {
-           if (userFirstName.text?.isEmpty == false
+        if (userFirstName.text?.isEmpty == false
             || userSecondName.text?.isEmpty == false
             || userPhoneNumber.text?.isEmpty == false
             || userBirthDay.text?.isEmpty == false
             || userEmail.text?.isEmpty == false ) {
-               saveButton.isEnabled = true
-           } else {
-               saveButton.isEnabled = false
-           }
-       }
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
+    }
 
     func updateUser(user: User, completion: @escaping (User) -> Void) {
         let currentUserEmail = Auth.auth().currentUser?.email
-        let currentUser = users.filter{ $0.email == currentUserEmail }
+        let currentUserUid = Auth.auth().currentUser?.uid
+        let currentUser = users.filter{ $0.uid == currentUserUid }
         var updateUser = currentUser[0]
         updateUser.firstName = userFirstName.text
         updateUser.secondName = userSecondName.text
         updateUser.phoneNumber = userPhoneNumber.text
         updateUser.birthDay = userBirthDay.text
         updateUser.email = userEmail.text!
+        if currentUserEmail != updateUser.email {
+            updateAuthEmail()
+            updateUser.email = userEmail.text!
+        }
         completion(updateUser)
+    }
+
+    func updateAuthEmail() {
+
+        let user = Auth.auth().currentUser
+        let oldEmail = user?.email
+        let credential = EmailAuthProvider.credential(withEmail: oldEmail!, password: currentUserPass!.text!)
+
+        user?.reauthenticate(with: credential, completion: { ( credential, error) in
+            if error != nil{
+                print(error!)
+            }else{
+                user?.updateEmail(to: self.userEmail.text!, completion: { (error) in
+                    if error != nil {
+                        print(error!)
+                    }
+                })
+            }
+        })
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == userEmail && currentUserPass == nil {
+            let alertController = UIAlertController(title: "Please enter your password", message: "For changing your email, you need enter your password", preferredStyle: UIAlertController.Style.alert)
+            alertController.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "Enter your password"
+            }
+            let sendAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+                let passwordTextField = alertController.textFields![0] as UITextField
+                self.currentUserPass = passwordTextField
+            })
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+                (action : UIAlertAction!) -> Void in })
+
+            alertController.addAction(sendAction)
+            alertController.addAction(cancelAction)
+
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 
     func uploadImage() {
@@ -171,7 +216,6 @@ class ProfileViewController: UITableViewController {
                 let image = UIImage(data: data)
                 self.userImage.image = image
             }
-            print(errorResponse ?? "No error")
         }
     }
     
@@ -180,6 +224,7 @@ class ProfileViewController: UITableViewController {
         updateUser(user: users[0]) { updateUser in
             FireStoreManager.shared.update(for: updateUser, in: .users)
         }
+
         let alert = UIAlertController(title: "Info", message: "Your data was saved.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -188,7 +233,7 @@ class ProfileViewController: UITableViewController {
 
 // MARK: - Work with image
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
@@ -204,7 +249,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         userImage.contentMode = .scaleAspectFill
         userImage.clipsToBounds = true
         uploadImage()
-        imageIsChanged = true
         dismiss(animated: true)
     }
 }

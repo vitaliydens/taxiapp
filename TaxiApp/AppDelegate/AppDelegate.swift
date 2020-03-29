@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow.init()
         window?.rootViewController = router.navigationController
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print(error.localizedDescription)
+//        }
         router.start()
         window?.makeKeyAndVisible()
         return true

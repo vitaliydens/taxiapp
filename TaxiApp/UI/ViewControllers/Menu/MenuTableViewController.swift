@@ -38,17 +38,15 @@ class MenuTableViewController: UITableViewController {
     }
 
 // MARK: - Function
-
     override func viewDidLoad() {
         super.viewDidLoad()
         FireStoreManager.shared.read(from: .users, returning: User.self) { (users) in
             self.users = users
-            let currentUserEmail = Auth.auth().currentUser?.email
-            let currentUser = users.filter{ $0.email == currentUserEmail }
+            let currentUserUid = Auth.auth().currentUser?.uid
+            let currentUser = users.filter{ $0.uid == currentUserUid }
             let user = currentUser[0]
             self.lblUserName.text = user.firstName ?? "Default"
             self.lblUserPhone.text = user.phoneNumber ?? "Default"
-           // self.userImageView.clipsToBounds = true
         }
     }
 
@@ -66,7 +64,6 @@ class MenuTableViewController: UITableViewController {
                 self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2
                 self.userImageView.clipsToBounds = true
             }
-            print(errorResponse ?? "No error")
         }
     }
 
@@ -79,6 +76,7 @@ class MenuTableViewController: UITableViewController {
     @IBAction func signOutButton(_ sender: UIButton) {
         let authManager = FirebaseAuthManager()
         authManager.signOut()
+        dismiss(animated: true, completion: nil)
     }
 }
     

@@ -44,9 +44,10 @@ class RegistrationViewController: UIViewController {
         if password == confirmPassword {
             let signUpManager = FirebaseAuthManager()
             signUpManager.createUser(email: email, password: password) { [weak self] (success) in
-                let newUser = User(firstName: "", secondName: "", phoneNumber: "", birthDay: "", email: email)
-                self?.authRouter?.start()
+                let currentUserUid = Auth.auth().currentUser?.uid
+                let newUser = User(firstName: "", secondName: "", phoneNumber: "", birthDay: "", email: email, uid: currentUserUid!)
                 FireStoreManager.shared.create(for: newUser, in: .users)
+                self?.authRouter?.start()
             }
         } else {
             showWarningLabel(withText: "Passwords is not the same!")
