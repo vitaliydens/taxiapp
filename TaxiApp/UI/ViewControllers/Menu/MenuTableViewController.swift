@@ -45,8 +45,16 @@ class MenuTableViewController: UITableViewController {
             let currentUserUid = Auth.auth().currentUser?.uid
             let currentUser = users.filter{ $0.uid == currentUserUid }
             let user = currentUser[0]
-            self.lblUserName.text = user.firstName ?? "Default"
-            self.lblUserPhone.text = user.phoneNumber ?? "Default"
+            if user.firstName == "" {
+                self.lblUserName.text = "Enter your name"
+            } else {
+                self.lblUserName.text = user.firstName
+            }
+            if user.phoneNumber == "" {
+                self.lblUserPhone.text = "Enter your phone number"
+            } else {
+                self.lblUserPhone.text = user.phoneNumber
+            }
         }
     }
 

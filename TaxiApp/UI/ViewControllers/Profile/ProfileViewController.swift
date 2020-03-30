@@ -60,6 +60,7 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         createToolbar()
     }
 
+    // Create date picker for birthday textfield
     func createDatePicker() {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -126,6 +127,7 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    // validation save button
     @objc private func textFieldChanged() {
         if (userFirstName.text?.isEmpty == false
             || userSecondName.text?.isEmpty == false
@@ -138,6 +140,7 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    // update user profile
     func updateUser(user: User, completion: @escaping (User) -> Void) {
         let currentUserEmail = Auth.auth().currentUser?.email
         let currentUserUid = Auth.auth().currentUser?.uid
@@ -155,30 +158,31 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         completion(updateUser)
     }
 
+    // update Firebase Authentication email
     func updateAuthEmail() {
-
         let user = Auth.auth().currentUser
         let oldEmail = user?.email
         let credential = EmailAuthProvider.credential(withEmail: oldEmail!, password: currentUserPass!.text!)
-
-        user?.reauthenticate(with: credential, completion: { ( credential, error) in
-            if error != nil{
-                print(error!)
-            }else{
+        user?.reauthenticate(with: credential, completion: { (credential, error) in
+            if let error = error {
+                print("\(String(describing: error.localizedDescription))")
+            } else {
                 user?.updateEmail(to: self.userEmail.text!, completion: { (error) in
                     if error != nil {
-                        print(error!)
+                        print("\(String(describing: error!.localizedDescription))")
                     }
                 })
             }
         })
     }
 
+    // ask password for change authEmail
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == userEmail && currentUserPass == nil {
             let alertController = UIAlertController(title: "Please enter your password", message: "For changing your email, you need enter your password", preferredStyle: UIAlertController.Style.alert)
             alertController.addTextField { (textField : UITextField!) -> Void in
                 textField.placeholder = "Enter your password"
+                textField.isSecureTextEntry = true
             }
             let sendAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
                 let passwordTextField = alertController.textFields![0] as UITextField
@@ -195,6 +199,7 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    // upload image to Firebase Storage
     func uploadImage() {
         guard let image = userImage.image else { return }
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
@@ -208,6 +213,7 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         uploadTask.resume()
     }
 
+    // download image from Firebase Storage
     func downloadImage() {
         let uid = Auth.auth().currentUser?.uid
         let downloadImageRef = imageReference.child("\(String(describing: uid!)).jpg")
@@ -233,7 +239,7 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
 
 // MARK: - Work with image
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
