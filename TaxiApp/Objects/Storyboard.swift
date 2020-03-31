@@ -15,6 +15,7 @@ enum Storyboard: String {
     case registration = "Registration"
     case login = "Login"
     case forgotPassword = "ForgotPassword"
+    case profile = "Profile"
 
     var instance: UIStoryboard {
         return UIStoryboard(name: rawValue, bundle: nil)

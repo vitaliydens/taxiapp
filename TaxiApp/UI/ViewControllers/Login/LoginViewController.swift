@@ -11,11 +11,12 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-    // MARK: IBOtlets
+    // MARK: - IBOtlets
     @IBOutlet private weak var warningLabel: UILabel!
     @IBOutlet private weak var emailOrPhoneTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
 
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +25,15 @@ class LoginViewController: UIViewController {
         warningLabel.alpha = 0
     }
 
-    // MARK: Functions
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 
     // hide keyboard
     @objc func dismissKeyboard() {
@@ -52,7 +61,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    // MARK: IBActions
+    // MARK: - IBActions
     @IBAction func loginTapped(_ sender: UIButton) {
         guard let email = emailOrPhoneTextField.text, let password = passwordTextField.text, email != "", password != "" else {
             displayWarningLabel(withText: "Credentials is incorrect")

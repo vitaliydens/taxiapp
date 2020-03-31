@@ -17,6 +17,9 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private weak var passTextField: UITextField!
     @IBOutlet private weak var confirmPassTextField: UITextField!
 
+    var authRouter: AuthRouter?
+    var users = [User]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         warningLabel.alpha = 0
@@ -32,11 +35,6 @@ class RegistrationViewController: UIViewController {
         }
     }
 
-    private func navigateToLoginScreen() {
-        let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
-        self.navigationController?.pushViewController(loginVC, animated: true)
-    }
-
     // MARK: IBActions
     @IBAction func registrationButtonTapped(_ sender: UIButton) {
         guard let email = emailOrPhoneTextField.text, let password = passTextField.text, let confirmPassword = confirmPassTextField.text, email != "", password != "", confirmPassword != "" else {
@@ -46,7 +44,10 @@ class RegistrationViewController: UIViewController {
         if password == confirmPassword {
             let signUpManager = FirebaseAuthManager()
             signUpManager.createUser(email: email, password: password) { [weak self] (success) in
-                self?.navigateToLoginScreen()
+                let currentUserUid = Auth.auth().currentUser?.uid
+                let newUser = User(firstName: "", secondName: "", phoneNumber: "", birthDay: "", email: email, uid: currentUserUid!)
+                FireStoreManager.shared.create(for: newUser, in: .users)
+                self?.authRouter?.start()
             }
         } else {
             showWarningLabel(withText: "Passwords is not the same!")

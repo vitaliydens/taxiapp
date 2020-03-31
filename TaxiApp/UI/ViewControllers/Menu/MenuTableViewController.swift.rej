@@ -1,0 +1,19 @@
+diff a/TaxiApp/UI/ViewControllers/Menu/MenuTableViewController.swift b/TaxiApp/UI/ViewControllers/Menu/MenuTableViewController.swift	(rejected hunks)
+@@ -19,6 +19,9 @@ class MenuTableViewController: UITableViewController {
+ // MARK: - Tableview delegate
+     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         switch indexPath.row {
++        case 0:
++            let profileVC = Storyboard.profile.instanceOf(viewController: ProfileViewController.self, identifier: "ProfileViewController")!
++            self.navigationController?.pushViewController(profileVC, animated: true)
+         case 2:
+             let mapVC = Storyboard.map.instanceOf(viewController: MapViewController.self, identifier: "MapViewController")!
+             self.navigationController?.pushViewController(mapVC, animated: true)
+@@ -32,6 +35,7 @@ class MenuTableViewController: UITableViewController {
+            let loginVC = Storyboard.login.instanceOf(viewController: LoginViewController.self, identifier: "LoginViewController")!
+            self.navigationController?.pushViewController(loginVC, animated: true)
+        }
++    
+ // MARK: - IBAction
+     @IBAction func signOutButton(_ sender: UIButton) {
+         let authManager = FirebaseAuthManager()
