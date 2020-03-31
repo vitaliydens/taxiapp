@@ -33,9 +33,7 @@ class FirebaseAuthManager {
 
     func signOut() {
         do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error.localizedDescription)
+            try? Auth.auth().signOut()
         }
     }
 

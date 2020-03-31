@@ -164,12 +164,10 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         let oldEmail = user?.email
         let credential = EmailAuthProvider.credential(withEmail: oldEmail!, password: currentUserPass!.text!)
         user?.reauthenticate(with: credential, completion: { (credential, error) in
-            if let error = error {
-                print("\(String(describing: error.localizedDescription))")
+            if error != nil {
             } else {
                 user?.updateEmail(to: self.userEmail.text!, completion: { (error) in
                     if error != nil {
-                        print("\(String(describing: error!.localizedDescription))")
                     }
                 })
             }
@@ -208,7 +206,6 @@ class ProfileViewController: UITableViewController, UITextFieldDelegate {
         let uploadImageRef = imageReference.child("\(String(describing: uid!)).jpg")
 
         let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
-            print("Upload task complete!")
         }
         uploadTask.resume()
     }

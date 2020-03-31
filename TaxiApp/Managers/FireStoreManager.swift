@@ -24,10 +24,8 @@ class FireStoreManager {
 
     func create<T: Encodable>(for encodableObject: T, in collectionReference: FirestoreCollectionReference) {
         do {
-            let json = try encodableObject.toJson()
-            reference(to: .users).addDocument(data: json)
-        } catch {
-            print(error)
+            let json = try? encodableObject.toJson()
+            reference(to: .users).addDocument(data: json!)
         }
     }
 
@@ -38,12 +36,10 @@ class FireStoreManager {
             do {
                 var objects = [T]()
                 for document in snapshot.documents {
-                    let object = try document.decode(as: objectType.self)
-                    objects.append(object)
+                    let object = try? document.decode(as: objectType.self)
+                    objects.append(object!)
                 }
                 completion(objects)
-            } catch {
-                print(error)
             }
         }
     }
@@ -54,7 +50,6 @@ class FireStoreManager {
             guard let id = encodableObject.id else { throw TaxiAppError.encodingError }
             reference(to: .users).document(id).setData(json)
         } catch {
-            print(error)
         }
     }
 }
